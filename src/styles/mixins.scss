@@ -1,0 +1,25 @@
+@import "./variables.scss";
+
+@mixin screen($breakpoint) {
+  @if ($breakpoint == desktop) {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+@mixin background($color) {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: $color;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  @include screen(desktop) {
+    left: calc((-100vw + #{$desktop-max-width}) / 2);
+  }
+}

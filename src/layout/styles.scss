@@ -1,0 +1,14 @@
+@import "../styles/base.scss";
+@import "../styles/colors.scss";
+@import "../styles/variables.scss";
+
+body {
+  background-color: $light-grey-color;
+}
+
+.page {
+  &__wrapper {
+    max-width: $desktop-max-width;
+    margin: 0 auto;
+  }
+}

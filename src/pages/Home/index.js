@@ -1,5 +1,5 @@
 import MainLayout from "../../layout";
-import "./home.scss";
+import "./styles.scss";
 
 const Home = () => {
   return (
