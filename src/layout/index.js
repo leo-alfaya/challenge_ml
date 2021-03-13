@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
-import './main-layout.scss'
+import PropTypes from "prop-types";
+import "./main-layout.scss";
 
 const MainLayout = ({ children }) => {
-  return <div>{children}</div>
-}
+  return <div className="page-wrapper">{children}</div>;
+};
 
 MainLayout.propTypes = {
-  children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 
-export default MainLayout
+export default MainLayout;

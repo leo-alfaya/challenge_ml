@@ -4,3 +4,8 @@
 body {
   background-color: $light-grey-color;
 }
+
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}

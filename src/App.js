@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux"
 import { setProducts } from './redux/actions'
-import Main from './pages/Main'
+import Home from './pages/Home'
 
 const App = ({ products, setProducts }) => {
   const getProducts = ({ query }) => {
@@ -29,7 +29,7 @@ const App = ({ products, setProducts }) => {
     console.log("products => ", products)
   }, [products])
 
-  return <Main />;
+  return <Home />;
 };
 
 const mapStateToProps = state => {
