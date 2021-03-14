@@ -3,3 +3,7 @@
 @function spacing($value) {
   @return $spacing-base * $value;
 }
+
+@function pxToRem($size) {
+  @return $size / 16px * 1rem;
+ }

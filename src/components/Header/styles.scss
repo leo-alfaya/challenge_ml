@@ -7,7 +7,15 @@
   position: relative;
   padding: spacing(1) 0;
 
-  &::after {
+  &::before {
     @include background($primary-color)
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  .logo {
+    padding-right: spacing(4);
   }
 }

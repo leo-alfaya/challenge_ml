@@ -1,12 +1,16 @@
-import './styles.scss'
-import Logo from '../Logo'
+import "./styles.scss";
+import Logo from "../Logo";
+import SearchField from "../SearchField"
 
 const Header = () => {
   return (
     <header className="header">
-      <Logo />
+      <div className="header__container">
+        <Logo />
+        <SearchField />
+      </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
