@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setProductQuery } from "../../redux/actions";
 import "./styles.scss";
 
-const SearchField = ({ query, setProductQuery }) => {
+const SearchField = ({ query }) => {
   let history = useHistory();
   const [search, setSearch] = useState(query);
 
@@ -19,12 +18,13 @@ const SearchField = ({ query, setProductQuery }) => {
   };
 
   const handleSubmitSearch = () => {
-    const urlParams = new URLSearchParams({ search }).toString();
-
-    setProductQuery(search);
-    
+    const urlParams = new URLSearchParams({ search }).toString();    
     history.push(`/items?${urlParams}`);
   };
+
+  useEffect(() => {
+    setSearch(query)
+  }, [query])
 
   return (
     <div className="search-field">
@@ -51,10 +51,4 @@ const mapStateToProps = (state) => {
   return { query: state.products.query };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setProductQuery: (products) => dispatch(setProductQuery(products)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchField);
+export default connect(mapStateToProps)(SearchField);
