@@ -1,45 +1,46 @@
 import { useEffect } from "react";
-import { connect } from "react-redux"
-import { setProducts } from './redux/actions'
-import Home from './pages/Home'
+import { connect } from "react-redux";
+import { setProducts } from "./redux/actions";
+import { getProducts } from "./api";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Results from "./pages/Results";
 
-const App = ({ products, setProducts }) => {
-  const getProducts = ({ query }) => {
-    return fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`)
-      .then((response) => response.json())
-      .then((data) => [false, data])
-      .catch((error) => [true, error]);
-  };
+const App = ({ query, setProducts }) => {
+  // const fetch = async function initialFetch() {
+  //   const [hasError, result] = await getProducts({ query });
 
-  useEffect(() => {
-    async function initialFetch() {
-      const [hasError, result] = await getProducts({ query: "apple" });
+  //   if (!hasError) {
+  //     setProducts(result.results);
+  //   } else {
+  //     console.log("error => ", result);
+  //   }
+  // };
 
-      if (!hasError) {
-        setProducts(result.results)
-      } else {
-        console.log("error => ", result);
-      }
-    }
+  // useEffect(() => fetch(), [query]);
 
-    return initialFetch()
-  }, []);
-
-  useEffect(() => {
-    console.log("products => ", products)
-  }, [products])
-
-  return <Home />;
+  return (
+    <Router>
+      <Switch>
+        <Route path="/items">
+          <Results />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  );
 };
 
-const mapStateToProps = state => {
-  return { products: state.products }
-}
+const mapStateToProps = (state) => {
+  return { query: state.products.query };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setProducts: products => dispatch(setProducts(products))
+    setProducts: (products) => dispatch(setProducts(products)),
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

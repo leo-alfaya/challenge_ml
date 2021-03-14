@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { setProductQuery } from "../../redux/actions";
 import "./styles.scss";
 
 const SearchField = ({ query, setProductQuery }) => {
-  const [inputValue, setInputValue] = useState(query);
+  let history = useHistory();
+  const [search, setSearch] = useState(query);
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setSearch(event.target.value);
   };
 
   const handleKeyPress = (event) => {
@@ -17,7 +19,11 @@ const SearchField = ({ query, setProductQuery }) => {
   };
 
   const handleSubmitSearch = () => {
-    setProductQuery(inputValue);
+    const urlParams = new URLSearchParams({ search }).toString();
+
+    setProductQuery(search);
+    
+    history.push(`/items?${urlParams}`);
   };
 
   return (
@@ -26,7 +32,7 @@ const SearchField = ({ query, setProductQuery }) => {
         type="text"
         className="search-field__input"
         placeholder="Nunca dejes de buscar"
-        value={inputValue}
+        value={search}
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
       />
