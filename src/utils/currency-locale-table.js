@@ -1,3 +1,5 @@
-export default {
+const table = {
   ARS: "es-ar",
 };
+
+export default table;
