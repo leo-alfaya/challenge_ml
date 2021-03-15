@@ -1,4 +1,5 @@
 import { SET_PRODUCTS, SET_PRODUCT_QUERY } from "../constants/action-types";
+import { prepareProducts } from "../../helpers/products";
 
 const initialState = {
   products: {
@@ -13,7 +14,7 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         products: {
           ...state.products,
-          list: action.payload,
+          list: prepareProducts(action.payload),
         },
       });
     case SET_PRODUCT_QUERY:

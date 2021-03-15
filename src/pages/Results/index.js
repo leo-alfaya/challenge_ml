@@ -14,7 +14,7 @@ const Results = ({ setProducts, setProductQuery }) => {
     const [hasError, result] = await getProducts({ query: search });
 
     if (!hasError) {
-      setProducts(result.results);
+      setProducts(result);
     }
   };
 
