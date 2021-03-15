@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import { formatCurrency } from "../../../helpers/format";
 import Separator from "../../Separator";
 import { Link } from "react-router-dom";
-
 import "./styles.scss";
 
 const ResultItem = ({ item }) => {
@@ -30,6 +30,10 @@ const ResultItem = ({ item }) => {
       <Separator />
     </div>
   );
+};
+
+ResultItem.propTypes = {
+  item: PropTypes.object.isRequired,
 };
 
 export default ResultItem;

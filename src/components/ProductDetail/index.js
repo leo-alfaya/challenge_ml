@@ -1,4 +1,5 @@
 import { formatCurrency } from "../../helpers/format";
+import PropTypes from 'prop-types';
 import Button from "../../components/Button";
 import "./styles.scss";
 
@@ -35,5 +36,9 @@ const ProductDetail = ({ product }) => {
     </div>
   );
 };
+
+ProductDetail.propTypes = {
+  product: PropTypes.object.isRequired
+}
 
 export default ProductDetail;

@@ -2,7 +2,7 @@ import {
   SET_PRODUCTS,
   SET_PRODUCT_QUERY,
   SET_ACTIVE_PRODUCT_DETAIL,
-  SET_ACTIVE_PRODUCT_DESCRIPTION
+  SET_ACTIVE_PRODUCT_DESCRIPTION,
 } from "../constants/action-types";
 import {
   prepareProducts,
@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   products: {
-    list: [],
+    list: { categories: [], items: [] },
     query: "",
     active: {},
   },

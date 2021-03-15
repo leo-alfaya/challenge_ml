@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getProducts } from "../../api";
@@ -41,6 +42,12 @@ const mapDispatchToProps = (dispatch) => {
     setProducts: (products) => dispatch(setProducts(products)),
     setProductQuery: (query) => dispatch(setProductQuery(query)),
   };
+};
+
+Results.propTypes = {
+  products: PropTypes.array.isRequired,
+  setProducts: PropTypes.func.isRequired,
+  setProductQuery: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

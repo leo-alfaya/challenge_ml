@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./styles.scss";
@@ -50,5 +51,9 @@ const SearchField = ({ query }) => {
 const mapStateToProps = (state) => {
   return { query: state.products.query };
 };
+
+SearchField.propTypes = {
+  query: PropTypes.string.isRequired
+}
 
 export default connect(mapStateToProps)(SearchField);

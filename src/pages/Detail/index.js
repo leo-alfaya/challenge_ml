@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { getProductDetail, getProductDescription } from "../../api";
 import { setActiveProductDetail, setActiveProductDescription } from "../../redux/actions";
 import MainLayout from "../../layout";
@@ -50,6 +51,12 @@ const mapDispatchToProps = (dispatch) => {
     setActiveProductDetail: (product) => dispatch(setActiveProductDetail(product)),
     setActiveProductDescription: (description) => dispatch(setActiveProductDescription(description))
   };
+};
+
+Detail.propTypes = {
+  activeProduct: PropTypes.object.isRequired,
+  setActiveProductDetail: PropTypes.func.isRequired,
+  setActiveProductDescription: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

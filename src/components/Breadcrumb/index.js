@@ -1,4 +1,5 @@
 import "./styles.scss";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const Breadcrumb = ({ categories }) => {
@@ -13,5 +14,9 @@ const Breadcrumb = ({ categories }) => {
 const mapStateToProps = (state) => {
   return { categories: state.products.list.categories };
 };
+
+Breadcrumb.propTypes = {
+  categories: PropTypes.array.isRequired
+}
 
 export default connect(mapStateToProps)(Breadcrumb);

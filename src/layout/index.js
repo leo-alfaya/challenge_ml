@@ -1,5 +1,5 @@
-import "./styles.scss";
 import Header from '../components/Header'
+import "./styles.scss";
 
 const MainLayout = ({ children }) => {
   return (
