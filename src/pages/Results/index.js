@@ -6,7 +6,6 @@ import { setProducts, setProductQuery } from "../../redux/actions";
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
 import ResultList from "../../components/ResultList";
-import "./styles.scss";
 
 const Results = ({ products, setProducts, setProductQuery }) => {
   const query = new URLSearchParams(useLocation().search);

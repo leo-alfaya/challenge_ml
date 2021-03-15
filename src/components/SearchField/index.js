@@ -41,7 +41,7 @@ const SearchField = ({ query }) => {
         type="button"
         onClick={handleSubmitSearch}
       >
-        <img src="icons/search.png" alt="search icon" />
+        <img src="/icons/search.png" alt="search icon" />
       </button>
     </div>
   );

@@ -5,6 +5,11 @@
   display: flex;
   flex-wrap: wrap;
 
+  &__link {
+    display: contents;
+    text-decoration: none;
+  }
+
   &__thumbnail-wrapper {
     height: 180px;
     width: 180px;
@@ -41,6 +46,11 @@
   &__city {
     font-size: pxToRem(12px);
     color: $medium-grey-color;
+  }
+
+  &__title {
+    font-size: pxToRem(18px);
+    color: $black-color;
   }
 
   &:last-child {
