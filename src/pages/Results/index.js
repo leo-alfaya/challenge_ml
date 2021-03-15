@@ -11,7 +11,7 @@ const Results = ({ products, setProducts, setProductQuery }) => {
   const query = new URLSearchParams(useLocation().search);
   const search = query.get("search");
 
-  const fetchProducts = async function initialFetch() {
+  const fetchProducts = async function fetch() {
     const [hasError, result] = await getProducts({ query: search });
 
     if (!hasError) {

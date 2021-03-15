@@ -7,6 +7,20 @@ export const getProducts = ({ query }) => {
     .catch((error) => [true, error]);
 };
 
-export default {
-  getProducts,
+export const getProductDetail = ({ id }) => {
+  const url = encodeURI(`${BASE_URL}/items/${id}`)
+  
+  return fetch(url) 
+    .then((response) => response.json())
+    .then((data) => [false, data])
+    .catch((error) => [true, error]);
+};
+
+export const getProductDescription = ({ id }) => {
+  const url = encodeURI(`${BASE_URL}/items/${id}/description`)
+  
+  return fetch(url) 
+    .then((response) => response.json())
+    .then((data) => [false, data])
+    .catch((error) => [true, error]);
 };
