@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { getProducts } from "../../api";
 import { setProducts, setProductQuery } from "../../redux/actions";
 import MainLayout from "../../layout";
+import Breadcrumb from "../../components/Breadcrumb"
 import "./styles.scss";
 
 const Results = ({ setProducts, setProductQuery }) => {
@@ -25,6 +26,7 @@ const Results = ({ setProducts, setProductQuery }) => {
 
   return (
     <MainLayout>
+      <Breadcrumb />
       <p>Results Page: {search}</p>
     </MainLayout>
   );

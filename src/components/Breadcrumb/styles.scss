@@ -1,0 +1,13 @@
+@import "../../styles/colors.scss";
+@import "../../styles/functions.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.breadcrumb {
+  padding: spacing(2) 0;
+
+  &__text {
+    font-size: pxToRem(14px);
+    color: $medium-grey-color
+  }
+}
