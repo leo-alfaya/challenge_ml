@@ -4,9 +4,10 @@ import { getProductDetail, getProductDescription } from "../../api";
 import { setActiveProductDetail, setActiveProductDescription } from "../../redux/actions";
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
+import ProductDetail from "../../components/ProductDetail";
 import { useParams } from "react-router-dom";
 
-const Detail = ({ setActiveProductDetail, setActiveProductDescription }) => {
+const Detail = ({ setActiveProductDetail, setActiveProductDescription, activeProduct }) => {
   const { id } = useParams();
 
   const fetchProductDetail = async function fetch() {
@@ -34,15 +35,15 @@ const Detail = ({ setActiveProductDetail, setActiveProductDescription }) => {
   return (
     <MainLayout>
       <Breadcrumb />
-      <p>detail page</p>
+      <ProductDetail product={activeProduct}/>
     </MainLayout>
   );
 };
 
 
-// const mapStateToProps = (state) => {
-//   return { products: state.products.list.items };
-// };
+const mapStateToProps = (state) => {
+  return { activeProduct: state.products.active };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -51,5 +52,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Detail);
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);
 

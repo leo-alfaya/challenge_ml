@@ -7,7 +7,8 @@ const prepareItem = ({
   condition,
   shipping,
   address,
-  sold_quantity
+  sold_quantity,
+  pictures
 }) => ({
   id,
   title,
@@ -16,7 +17,7 @@ const prepareItem = ({
     currency: currency_id,
     amount: price,
   },
-  picture: thumbnail,
+  picture: pictures ? pictures[0].secure_url : thumbnail,
   condition: condition,
   shipping: shipping.free_shipping,
   sold_quantity

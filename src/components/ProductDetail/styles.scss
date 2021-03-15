@@ -1,0 +1,69 @@
+@import "../../styles/colors.scss";
+@import "../../styles/functions.scss";
+
+.product-detail {
+  background-color: $white-color;
+  padding: spacing(2) spacing(2) spacing(4) spacing(2);
+  display: flex;
+  flex-direction: column;
+
+  &__detail-wrapper {
+    display: flex;
+  }
+
+  &__thumbnail-wrapper {
+    width: 680px;
+    min-width: 680px;
+    display:flex;
+    justify-content: center;
+  }
+
+  &__thumbnail-image {
+    height: 100%;
+  }
+
+  &__info-wrapper {
+    padding: spacing(4) 0 0 spacing(20);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__condition {
+    font-size: pxToRem(14px);
+    color: $medium-grey-color;
+    padding-bottom: spacing(2);
+  }
+
+  &__title {
+    font-size: pxToRem(24px);
+    color: $black-color;
+    padding-bottom: spacing(4);
+  }
+
+  &__price {
+    font-size: pxToRem(46px);
+    color: $black-color;
+    padding-bottom: spacing(4);
+  }
+
+  &__description-wrapper {
+    width: 680px;
+    padding: spacing(12) 0 0 spacing(2);
+  }
+
+  &__description-title {
+    padding-bottom: spacing(4);
+    font-size: pxToRem(28px);
+    color: $black-color;
+  }
+
+  &__description-text {
+    font-size: pxToRem(16px);
+    color: $medium-grey-color;
+  }
+
+  .button {
+    margin-right: spacing(2)
+  }
+}

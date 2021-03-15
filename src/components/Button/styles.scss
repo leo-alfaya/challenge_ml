@@ -1,0 +1,12 @@
+@import "../../styles/colors.scss";
+@import "../../styles/functions.scss";
+
+.button {
+  border: none;
+  border-radius: 4px;
+  background-color: $secondary-color;
+  color: $white-color;
+  padding: spacing(1) 0;
+  outline: none;
+  cursor: pointer;
+}
