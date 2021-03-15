@@ -1,14 +1,17 @@
 @import "../styles/base.scss";
 @import "../styles/colors.scss";
+@import "../styles/functions.scss";
 @import "../styles/variables.scss";
 
 body {
   background-color: $light-grey-color;
+  overflow-x: hidden;
 }
 
 .page {
   &__wrapper {
     max-width: $desktop-max-width;
     margin: 0 auto;
+    padding-bottom: 100px;
   }
 }

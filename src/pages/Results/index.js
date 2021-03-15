@@ -4,10 +4,11 @@ import { useLocation } from "react-router-dom";
 import { getProducts } from "../../api";
 import { setProducts, setProductQuery } from "../../redux/actions";
 import MainLayout from "../../layout";
-import Breadcrumb from "../../components/Breadcrumb"
+import Breadcrumb from "../../components/Breadcrumb";
+import ResultList from "../../components/ResultList";
 import "./styles.scss";
 
-const Results = ({ setProducts, setProductQuery }) => {
+const Results = ({ products, setProducts, setProductQuery }) => {
   const query = new URLSearchParams(useLocation().search);
   const search = query.get("search");
 
@@ -27,9 +28,13 @@ const Results = ({ setProducts, setProductQuery }) => {
   return (
     <MainLayout>
       <Breadcrumb />
-      <p>Results Page: {search}</p>
+      <ResultList products={products} />
     </MainLayout>
   );
+};
+
+const mapStateToProps = (state) => {
+  return { products: state.products.list.items };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -39,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Results);
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

@@ -1,8 +1,9 @@
 const prepareItems = (products) => {
   return products.map(
-    ({ id, title, price, currency_id, thumbnail, condition, shipping }) => ({
+    ({ id, title, price, currency_id, thumbnail, condition, shipping, address }) => ({
       id,
       title,
+      city_name: address.city_name,
       price: {
         currency: currency_id,
         amount: price,
@@ -16,7 +17,7 @@ const prepareItems = (products) => {
 
 export const prepareProducts = (products) => {
   const preparedProducts = products.results.slice(0, 4);
-  const categories = products.filters[0].values.map(
+  const categories = products.filters[0]?.values.map(
     (category) => category.name
   );
 

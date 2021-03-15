@@ -2,11 +2,7 @@ import MainLayout from "../../layout";
 import "./styles.scss";
 
 const Home = () => {
-  return (
-    <MainLayout>
-      <p>Main Page</p>
-    </MainLayout>
-  );
+  return <MainLayout />;
 };
 
 export default Home;

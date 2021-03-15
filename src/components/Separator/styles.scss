@@ -1,0 +1,8 @@
+@import "../../styles/colors.scss";
+@import "../../styles/functions.scss";
+
+.separator {
+  width: 100%;
+  margin: spacing(2) 0;
+  border-bottom: 1px solid $light-grey-color;
+}

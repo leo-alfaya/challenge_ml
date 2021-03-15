@@ -1,14 +1,13 @@
 @import "../../styles/colors.scss";
 @import "../../styles/functions.scss";
 @import "../../styles/mixins.scss";
-@import "../../styles/variables.scss";
 
 .header {
   position: relative;
   padding: spacing(1) 0;
 
   &::before {
-    @include background($primary-color)
+    @include background($primary-color);
   }
 
   &__container {

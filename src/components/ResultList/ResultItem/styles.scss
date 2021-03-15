@@ -1,0 +1,51 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/functions.scss";
+
+.result-item {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__thumbnail-wrapper {
+    height: 180px;
+    width: 180px;
+    padding-right: spacing(2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__thumbnail-image {
+    height: 100%;
+    max-width: 100%;
+  }
+
+  &__info-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-top: spacing(2);
+  }
+
+  &__info-header-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 spacing(12.5) spacing(4) 0;
+  }
+
+  &__price {
+    font-size: pxToRem(24px);
+    color: $black-color;
+  }
+
+  &__city {
+    font-size: pxToRem(12px);
+    color: $medium-grey-color;
+  }
+
+  &:last-child {
+    .separator {
+      display: none;
+    }
+  }
+}

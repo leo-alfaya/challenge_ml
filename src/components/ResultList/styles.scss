@@ -1,0 +1,9 @@
+@import "../../styles/colors.scss";
+@import "../../styles/functions.scss";
+
+.result-list {
+  background-color: $white-color;
+  padding: spacing(2);
+  display: flex;
+  flex-direction: column;
+}
