@@ -1,7 +1,20 @@
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { setProductQuery } from "../../redux/actions";
 import MainLayout from "../../layout";
 
-const Home = () => {
+const Home = ({ setProductQuery }) => {
+  useEffect(() => {
+    setProductQuery("");
+  }, []);
+
   return <MainLayout />;
 };
 
-export default Home;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setProductQuery: (query) => dispatch(setProductQuery(query)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Home);

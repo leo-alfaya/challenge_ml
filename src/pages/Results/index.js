@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setProducts: (products) => dispatch(setProducts(products)),
-    setProductQuery: (products) => dispatch(setProductQuery(products)),
+    setProductQuery: (query) => dispatch(setProductQuery(query)),
   };
 };
 
