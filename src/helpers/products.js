@@ -32,7 +32,7 @@ export const prepareProducts = (products) => {
 
   const items = preparedProducts.map(product => prepareItem(product));
 
-  return { categories, items };
+  return { categories: categories || [], items };
 };
 
 export const prepareActiveProductDetails = (product) => {
