@@ -1,26 +1,11 @@
-const BASE_URL = "https://api.mercadolibre.com";
+const BASE_URL = "http://localhost:3000";
 
-export const getProducts = ({ query }) => {
-  return fetch(`${BASE_URL}/sites/MLA/search?q=${query}`)
-    .then((response) => response.json())
-    .then((data) => [false, data])
-    .catch((error) => [true, error]);
+export const getItems = ({ query }) => {
+  return fetch(`${BASE_URL}/api/items?q=${query}`)
+    .then((response) => response.json())    
 };
 
-export const getProductDetail = ({ id }) => {
-  const url = encodeURI(`${BASE_URL}/items/${id}`)
-  
-  return fetch(url) 
+export const getItemDetail = ({ id }) => {  
+  return fetch(`${BASE_URL}/api/items/${id}`) 
     .then((response) => response.json())
-    .then((data) => [false, data])
-    .catch((error) => [true, error]);
-};
-
-export const getProductDescription = ({ id }) => {
-  const url = encodeURI(`${BASE_URL}/items/${id}/description`)
-  
-  return fetch(url) 
-    .then((response) => response.json())
-    .then((data) => [false, data])
-    .catch((error) => [true, error]);
 };

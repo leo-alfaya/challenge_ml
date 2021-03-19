@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { getProducts } from "../../api";
+import { getItems } from "../../api";
 import { setProducts, setProductQuery } from "../../redux/actions";
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
@@ -13,10 +13,12 @@ const Results = ({ products, setProducts, setProductQuery }) => {
   const search = query.get("search");
 
   const fetchProducts = async function fetch() {
-    const [hasError, result] = await getProducts({ query: search });
+    const response = await getItems({ query: search });
 
-    if (!hasError) {
-      setProducts(result);
+    if (!response.error) {
+      setProducts(response.data);
+    } else {
+      console.log(response.message)
     }
   };
 

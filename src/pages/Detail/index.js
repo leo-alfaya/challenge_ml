@@ -1,46 +1,42 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getProductDetail, getProductDescription } from "../../api";
-import { setActiveProductDetail, setActiveProductDescription } from "../../redux/actions";
+import { getItemDetail } from "../../api";
+import {
+  setActiveProduct,
+} from "../../redux/actions";
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
 import ProductDetail from "../../components/ProductDetail";
 import { useParams } from "react-router-dom";
 
-const Detail = ({ setActiveProductDetail, setActiveProductDescription, activeProduct }) => {
+const Detail = ({
+  setActiveProduct,
+  activeProduct,
+}) => {
   const { id } = useParams();
 
-  const fetchProductDetail = async function fetch() {
-    const [hasError, result] = await getProductDetail({ id });
+  const fetchItemDetail = async function fetch() {
+    const response = await getItemDetail({ id });
 
-    if (!hasError) {
-      setActiveProductDetail(result)
+    if (!response.error) {
+      setActiveProduct(response.data);
+    } else {
+      console.log(response.message)
     }
   };
-
-  const fetchProductDescription = async function fetch() {
-    const [hasError, result] = await getProductDescription({ id });
-
-    if (!hasError) {
-      setActiveProductDescription(result.plain_text);
-    }
-  };
-  
 
   useEffect(() => {
-    fetchProductDetail();
-    fetchProductDescription()
+    fetchItemDetail();
   }, []);
 
   return (
     <MainLayout>
       <Breadcrumb />
-      <ProductDetail product={activeProduct}/>
+      <ProductDetail product={activeProduct} />
     </MainLayout>
   );
 };
-
 
 const mapStateToProps = (state) => {
   return { activeProduct: state.products.active };
@@ -48,16 +44,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setActiveProductDetail: (product) => dispatch(setActiveProductDetail(product)),
-    setActiveProductDescription: (description) => dispatch(setActiveProductDescription(description))
+    setActiveProduct: (product) =>
+      dispatch(setActiveProduct(product)),
   };
 };
 
 Detail.propTypes = {
   activeProduct: PropTypes.object.isRequired,
-  setActiveProductDetail: PropTypes.func.isRequired,
-  setActiveProductDescription: PropTypes.func.isRequired,
+  setActiveProduct: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);
-

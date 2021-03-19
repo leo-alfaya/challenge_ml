@@ -1,13 +1,8 @@
 import {
   SET_PRODUCTS,
   SET_PRODUCT_QUERY,
-  SET_ACTIVE_PRODUCT_DETAIL,
-  SET_ACTIVE_PRODUCT_DESCRIPTION,
+  SET_ACTIVE_PRODUCT,
 } from "../constants/action-types";
-import {
-  prepareProducts,
-  prepareActiveProductDetails,
-} from "../../helpers/products";
 
 const initialState = {
   products: {
@@ -23,7 +18,7 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         products: {
           ...state.products,
-          list: prepareProducts(action.payload),
+          list: action.payload,
         },
       });
     case SET_PRODUCT_QUERY:
@@ -33,23 +28,12 @@ function rootReducer(state = initialState, action) {
           query: action.payload,
         },
       });
-    case SET_ACTIVE_PRODUCT_DETAIL:
+    case SET_ACTIVE_PRODUCT:
       return Object.assign({}, state, {
         products: {
           ...state.products,
           active: {
-            ...state.products.active,
-            ...prepareActiveProductDetails(action.payload),
-          },
-        },
-      });
-    case SET_ACTIVE_PRODUCT_DESCRIPTION:
-      return Object.assign({}, state, {
-        products: {
-          ...state.products,
-          active: {
-            ...state.products.active,
-            description: action.payload,
+            ...action.payload
           },
         },
       });

@@ -1,10 +1,10 @@
 import { formatCurrency } from "../../helpers/format";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Button from "../../components/Button";
 import "./styles.scss";
 
 const ProductDetail = ({ product }) => {
-  const { item, description } = product
+  const { item, description } = product;
 
   return (
     <div className="product-detail">
@@ -23,13 +23,15 @@ const ProductDetail = ({ product }) => {
             <p className="product-detail__price">
               {formatCurrency(item.price.amount, item.price.currency)}
             </p>
-            <Button text="Comprar"/>
+            <Button text="Comprar" />
           </div>
         </div>
       ) : null}
       {description ? (
         <div className="product-detail__description-wrapper">
-          <p className="product-detail__description-title">Descripción del producto</p>
+          <p className="product-detail__description-title">
+            Descripción del producto
+          </p>
           <p className="product-detail__description-text">{description}</p>
         </div>
       ) : null}
@@ -38,7 +40,7 @@ const ProductDetail = ({ product }) => {
 };
 
 ProductDetail.propTypes = {
-  product: PropTypes.object.isRequired
-}
+  product: PropTypes.object.isRequired,
+};
 
 export default ProductDetail;
