@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -11,12 +11,16 @@ import {
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
 import ResultList from "../../components/ResultList";
+import Error from "../../components/Error";
 
 const Results = ({ products, setProducts, setProductQuery, clearProducts }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const query = new URLSearchParams(useLocation().search);
   const search = query.get("search");
 
   const fetchProducts = async function fetch() {
+    setIsLoading(true);
+
     const response = await getItems({ query: search });
 
     if (!response.error) {
@@ -24,6 +28,18 @@ const Results = ({ products, setProducts, setProductQuery, clearProducts }) => {
     } else {
       console.log(response.message);
     }
+
+    setIsLoading(false);
+  };
+
+  const renderContent = () => {
+    if (products.length) {
+      return <ResultList products={products} />;
+    }
+
+    return (
+      <Error error="No encontramos ningún producto para esta búsqueda, ¡inténtelo de nuevo" />
+    );
   };
 
   useEffect(() => {
@@ -37,8 +53,12 @@ const Results = ({ products, setProducts, setProductQuery, clearProducts }) => {
 
   return (
     <MainLayout>
-      <Breadcrumb />
-      <ResultList products={products} />
+      {!isLoading ? (
+        <>
+          <Breadcrumb />
+          {renderContent()}
+        </>
+      ) : null}
     </MainLayout>
   );
 };

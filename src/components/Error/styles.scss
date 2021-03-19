@@ -1,0 +1,15 @@
+@import "../../styles/colors.scss";
+@import "../../styles/functions.scss";
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white-color;
+  padding: spacing(4) spacing(4) spacing(4) spacing(4);
+
+  &__text {
+    font-size: pxToRem(18px);
+    color: $black-color;
+  }
+}

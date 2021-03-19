@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getItemDetail } from "../../api";
@@ -6,12 +6,16 @@ import { setActiveProduct, clearActiveProduct } from "../../redux/actions";
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
 import ProductDetail from "../../components/ProductDetail";
+import Error from "../../components/Error";
 import { useParams } from "react-router-dom";
 
 const Detail = ({ activeProduct, setActiveProduct, clearActiveProduct }) => {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchItemDetail = async function fetch() {
+    setIsLoading(true);
+
     const response = await getItemDetail({ id });
 
     if (!response.error) {
@@ -19,6 +23,17 @@ const Detail = ({ activeProduct, setActiveProduct, clearActiveProduct }) => {
     } else {
       console.log(response.message);
     }
+
+    setIsLoading(false);
+  };
+
+  const renderContent = () => {
+    if (Object.keys(activeProduct).length) {
+      return <ProductDetail product={activeProduct} />;
+    }
+    return (
+      <Error error="Se produjo un error al encontrar este producto, ¡intente buscar nuevamente" />
+    );
   };
 
   useEffect(() => {
@@ -29,8 +44,12 @@ const Detail = ({ activeProduct, setActiveProduct, clearActiveProduct }) => {
 
   return (
     <MainLayout>
-      <Breadcrumb />
-      <ProductDetail product={activeProduct} />
+      {!isLoading ? (
+        <>
+          <Breadcrumb />
+          {renderContent()}
+        </>
+      ) : null}
     </MainLayout>
   );
 };
