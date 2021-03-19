@@ -3,12 +3,16 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getItems } from "../../api";
-import { setProducts, setProductQuery } from "../../redux/actions";
+import {
+  setProducts,
+  setProductQuery,
+  clearProducts,
+} from "../../redux/actions";
 import MainLayout from "../../layout";
 import Breadcrumb from "../../components/Breadcrumb";
 import ResultList from "../../components/ResultList";
 
-const Results = ({ products, setProducts, setProductQuery }) => {
+const Results = ({ products, setProducts, setProductQuery, clearProducts }) => {
   const query = new URLSearchParams(useLocation().search);
   const search = query.get("search");
 
@@ -18,7 +22,7 @@ const Results = ({ products, setProducts, setProductQuery }) => {
     if (!response.error) {
       setProducts(response.data);
     } else {
-      console.log(response.message)
+      console.log(response.message);
     }
   };
 
@@ -26,6 +30,10 @@ const Results = ({ products, setProducts, setProductQuery }) => {
     setProductQuery(search);
     fetchProducts();
   }, [search]);
+
+  useEffect(() => {
+    return () => clearProducts();
+  }, []);
 
   return (
     <MainLayout>
@@ -43,10 +51,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setProducts: (products) => dispatch(setProducts(products)),
     setProductQuery: (query) => dispatch(setProductQuery(query)),
+    clearProducts: () => dispatch(clearProducts()),
   };
 };
 
 Results.propTypes = {
+  clearProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
   setProducts: PropTypes.func.isRequired,
   setProductQuery: PropTypes.func.isRequired,
